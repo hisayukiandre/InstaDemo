@@ -1,0 +1,12 @@
+<h1>ユーザマイページ</h1>
+
+<%= @user.user_name %>
+<%= @user.email %><br>
+<%= attachment_image_tag @user, :profile_image, size:'100x100' %>
+
+<% if @user == current_user %>
+  <%= link_to edit_user_path(current_user) do %>
+    <p>プロフィールを編集する</p>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,7 @@
+<h1>投稿作成画面</h1>
+
+<%= form_with model: @post, url: posts_path, local:true do |f| %>
+  <%= f.attachment_field :image %>
+  <%= f.text_area :caption %>
+  <%= f.submit '投稿する' %>
+<% end %>

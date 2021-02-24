@@ -1,0 +1,10 @@
+<h1>投稿フィード</h1>
+
+<% @posts.each do |post| %>
+  <%= attachment_image_tag post.user, :profile_image, size:'50x50' %>
+  <%= post.user.user_name %><br>
+  <%= link_to post_path(post) do %>
+    <%= attachment_image_tag post, :image, size:'100x100' %><br>
+  <% end %>
+  <%= post.caption %>
+<% end %>
