@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 	root to: 'posts#index'
   devise_for :users
   resources :users, only: [:show, :edit, :update]
-  resources :posts, only: [:show, :new, :create]
+  resources :posts, only: [:show, :new, :create] do
+  	resources :post_comments, only: [:create]
+  	resource :favorites, only: [:create, :destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

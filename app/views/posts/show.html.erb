@@ -7,4 +7,23 @@
 <%= @post.caption %>
 
 <h2>いいね</h2>
+<% if favorited_by?(@post, current_user) %>
+	<%= link_to post_favorites_path(@post), method: :delete do |favorite| %>
+	  ♥<%= @post.favorites.count %>いいね
+	<% end %>
+<% else %>
+	<%= link_to post_favorites_path(@post), method: :post do |favorite| %>
+	  ♡<%= @post.favorites.count %>いいね
+	<% end %>
+<% end %>
+
 <h2>コメント</h2>
+<% @post_comments.each do |comment| %>
+  <%= comment.user.user_name %>:
+  <%= comment.comment %><br>
+<% end %>
+
+<%= form_with model:[@post, @post_comment], url:post_post_comments_path(@post) do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.submit 'コメントする' %>
+<% end %>
