@@ -1,7 +1,11 @@
 <% if user_signed_in? %>
   <%= link_to 'ホーム', root_path %>
+  <%= link_to '新規投稿', new_post_path %>
   <%= link_to 'マイページ', user_path(current_user) %>
+  <%= link_to 'ユーザー一覧', users_path %>
 	<%= link_to 'DM' %>
+	<%= link_to 'フォロー中', user_followers_path(current_user) %>
+	<%= link_to 'フォロワー', user_followings_path(current_user) %>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to 'ホーム', root_path %>

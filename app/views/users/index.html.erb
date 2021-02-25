@@ -1,0 +1,13 @@
+<h1>ユーザー一覧</h1>
+<% @users.each do |user| %>
+  <%= user.user_name %>
+	<%= link_to user_path(user) do %><br>
+	  <%= attachment_image_tag user, :profile_image, size:'50x50' %>
+  <% end %>
+
+  <% if current_user.following?(user) %>
+  	<%= link_to 'フォローをやめる', user_relationships_path(user), method: :delete %><br>
+	<% else %>
+  	<%= link_to 'フォローする', user_relationships_path(user), method: :post %><br>
+  <% end %>
+<% end %>

@@ -3,10 +3,25 @@
 <%= @user.user_name %>
 <%= @user.email %><br>
 <%= attachment_image_tag @user, :profile_image, size:'100x100' %>
-
+<br>
+<%= link_to user_followers_path(@user) do %>
+	<%= @user.follower_users.count %>フォロワー
+<% end %>
+<%= link_to user_followings_path(@user) do %>
+	<%= @user.following_users.count %>フォロー中
+<% end %>
+<br>
 <% if @user == current_user %>
   <%= link_to edit_user_path(current_user) do %>
     <p>プロフィールを編集する</p>
+  <% end %>
+<% end %>
+
+<% if not @user == current_user %>
+  <% if current_user.following?(@user) %>
+    <%= link_to 'フォローを外す', user_relationships_path(@user.id), method: :delete %>
+  <% else %>
+    <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post %>
   <% end %>
 <% end %>
 
