@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   	resources :post_comments, only: [:create]
   	resource :favorites, only: [:create, :destroy]
   end
+  resources :rooms, only: [:index, :show, :create]
+  resources :chats, only: [:create, :destroy, :index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

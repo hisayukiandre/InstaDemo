@@ -1,0 +1,24 @@
+<h1>チャットルーム</h1>
+
+<% if @chat.errors.any? %>
+  <% @chat.errors.full_messages.each do |error_message| %>
+    <%= error_message %><br>
+  <% end %>
+<% end %>
+
+<% @others.each do |other| %>
+  <%= other.user.user_name %>
+<% end %>
+とのメッセージ<br>
+
+
+<% @messages.each do |m| %>
+  <%= m.user.user_name %>:
+  <%= m.message %><br>
+<% end %>
+
+<%= form_with model:@chat, url:chats_path, local:true do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id, value:@room.id %>
+  <%= f.submit '送信' %>
+<% end %>

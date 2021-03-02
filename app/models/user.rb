@@ -7,10 +7,16 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy #フォロー取得
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy #フォロワー取得
   has_many :following_users, through: :follower, source: :followed #自分がフォローしている人
   has_many :follower_users, through: :followed, source: :follower #自分をフォローしている人
+
+  has_many :rooms, through: :user_rooms
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+
   attachment :profile_image
 
   # ユーザーをフォローする

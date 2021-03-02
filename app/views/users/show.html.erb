@@ -25,3 +25,5 @@
   <% end %>
 <% end %>
 
+<!-- pathの()に指定してあげるとlink_toでパラメータを渡せる -->
+<%= link_to 'チャットを始める', rooms_path(other_user_id:@user.id), method: :post %> 
