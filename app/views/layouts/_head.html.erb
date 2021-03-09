@@ -1,14 +1,23 @@
-<% if user_signed_in? %>
-  <%= link_to 'ホーム', root_path %>
-  <%= link_to '新規投稿', new_post_path %>
-  <%= link_to 'マイページ', user_path(current_user) %>
-  <%= link_to 'ユーザー一覧', users_path %>
-	<%= link_to 'DM', rooms_path %>
-	<%= link_to 'フォロー中', user_followers_path(current_user) %>
-	<%= link_to 'フォロワー', user_followings_path(current_user) %>
-  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'ホーム', root_path %>
-  <%= link_to '会員登録', new_user_registration_path %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>
+<div class="container-fluid bg-secondary">
+  <div class="row">
+    <div class="navbar-brand">
+      <i class="fab fa-instagram fa-4x"></i>
+    </div>
+    <div class="navbar navbar-expand-lg justify-content-end">
+      <% if user_signed_in? %>
+        <%= link_to 'ホーム', root_path, class: "nav-item nav-link active text-light" %>
+        <%= link_to '新規投稿', new_post_path , class: "nav-item nav-link active text-light" %>
+        <%= link_to 'マイページ', user_path(current_user), class: "nav-item nav-link active text-light" %>
+        <%= link_to 'ユーザー一覧', users_path, class: "nav-item nav-link active text-light" %>
+      	<%= link_to 'DM', rooms_path, class: "nav-item nav-link active text-light" %>
+      	<%= link_to 'フォロー中', user_followings_path(current_user), class: "nav-item nav-link active text-light" %>
+      	<%= link_to 'フォロワー', user_followers_path(current_user), class: "nav-item nav-link active text-light" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-item nav-link active text-light" %>
+      <% else %>
+        <%= link_to 'ホーム', root_path, class: "nav-item nav-link active text-light" %>
+        <%= link_to '会員登録', new_user_registration_path, class: "nav-item nav-link active text-light" %>
+        <%= link_to 'ログイン', new_user_session_path, class: "nav-item nav-link active text-light" %>
+      <% end %>
+    </div>
+  </div>
+</div>

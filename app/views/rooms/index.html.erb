@@ -1,7 +1,22 @@
 <h1>DM 一覧</h1>
-
-<% @rooms.each do |room| %>
-  <%= link_to room_path(room.room_id) do %>
-    <%= room.user.user_name %><br>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+  	<table>
+			<% @rooms.each do |room| %>
+				<tbody>
+					<tr>
+					  <th></th>
+				  </tr>
+				  <tr>
+				  	<td><%= attachment_image_tag room.user, :profile_image, size:'60x60' %><br></td>
+						<td>
+						  <%= link_to room_path(room.room_id) do %>
+						  	<%= room.user.user_name %>
+						  <% end %>
+						</td>
+				  </tr>
+				</tbody>
+			<% end %>
+		</table>
+	</div>
+</div>

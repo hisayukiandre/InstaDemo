@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-	#before_action :room_exists?, only: [:create]
+	before_action :authenticate_user!
   def index
   	@user_rooms = UserRoom.where(user_id: current_user.id)
   	room_list = []

@@ -1,4 +1,5 @@
 class PostCommentsController < ApplicationController
+	before_action :authenticate_user!
 
 	def create
 		post_comment = PostComment.new(post_comment_params)

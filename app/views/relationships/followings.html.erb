@@ -1,4 +1,12 @@
-<h1>フォロー中一覧</h1>
-<% @followings.each do |following| %>
- <%= following.user_name %><br>
-<% end %>
+
+<div class="container ">
+	<h1>フォロー中一覧</h1>
+  <div class="row d-flex justify-content-center">
+		<% @followings.each do |following| %>
+		  <div class="col-md-2 px-2 mx-2 my-2">
+		  	<%= attachment_image_tag following, :profile_image, size:'60x60' %><br>
+		    <%= following.user_name %>
+		  </div>
+		<% end %>
+	</div>
+</div>

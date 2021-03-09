@@ -1,24 +1,40 @@
-<h1>チャットルーム</h1>
+<div class="container">
+	<div class="row">
+		<% if @chat.errors.any? %>
+		  <% @chat.errors.full_messages.each do |error_message| %>
+		    <%= error_message %><br>
+		  <% end %>
+		<% end %>
 
-<% if @chat.errors.any? %>
-  <% @chat.errors.full_messages.each do |error_message| %>
-    <%= error_message %><br>
-  <% end %>
-<% end %>
-
-<% @others.each do |other| %>
-  <%= other.user.user_name %>
-<% end %>
-とのメッセージ<br>
-
-
-<% @messages.each do |m| %>
-  <%= m.user.user_name %>:
-  <%= m.message %><br>
-<% end %>
-
-<%= form_with model:@chat, url:chats_path, local:true do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id, value:@room.id %>
-  <%= f.submit '送信' %>
-<% end %>
+		<% @others.each do |other| %>
+		  <%= other.user.user_name %>
+		<% end %>
+		とのメッセージ<br>
+	</div>
+	<% @messages.each do |m| %>
+	  <% if m.user.id == current_user.id %>
+	    <div class="row d-flex justify-content-end">
+		  	<div class="my-2 mx-2">
+				  <%#= m.user.user_name %>
+				  <span class="rounded-pill speech-baloon-color py-1 px-1"><%= m.message %></span>:
+		  	</div>
+		  </div>
+	  <% else %>
+	    <div class="row d-flex justify-content-start">
+		  	<div class="my-2 mx-2">
+				  <%= m.user.user_name %>:
+				  <span class="rounded-pill border border-dark py-1 px-1"><%= m.message %></span>
+				</div>
+			</div>
+	  <% end %>
+	<% end %>
+	<div class="row my-2 d-flex justify-content-center fixed-bottom form-inline">
+		<%= form_with model:@chat, url:chats_path, local:true do |f| %>
+			<span class="w-100">
+			  <%= f.text_field :message, size: '100', class: "form-control" %>
+			  <%= f.hidden_field :room_id, value:@room.id %>
+			  <%= f.submit '送信' %>
+			</span>
+		<% end %>
+	</div>
+</div>

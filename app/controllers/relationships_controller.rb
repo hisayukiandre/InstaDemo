@@ -1,5 +1,6 @@
 class RelationshipsController < ApplicationController
-
+	before_action :authenticate_user!
+	
 	def followers
 		user = User.find(params[:user_id])
 		@followers = user.follower_users
