@@ -1,23 +1,26 @@
-<div class="container-fluid bg-secondary">
-  <div class="row">
-    <div class="navbar-brand">
-      <i class="fab fa-instagram fa-4x"></i>
-    </div>
-    <div class="navbar navbar-expand-lg justify-content-end">
-      <% if user_signed_in? %>
-        <%= link_to 'ホーム', root_path, class: "nav-item nav-link active text-light" %>
-        <%= link_to '新規投稿', new_post_path , class: "nav-item nav-link active text-light" %>
-        <%= link_to 'マイページ', user_path(current_user), class: "nav-item nav-link active text-light" %>
-        <%= link_to 'ユーザー一覧', users_path, class: "nav-item nav-link active text-light" %>
-      	<%= link_to 'DM', rooms_path, class: "nav-item nav-link active text-light" %>
-      	<%= link_to 'フォロー中', user_followings_path(current_user), class: "nav-item nav-link active text-light" %>
-      	<%= link_to 'フォロワー', user_followers_path(current_user), class: "nav-item nav-link active text-light" %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-item nav-link active text-light" %>
-      <% else %>
-        <%= link_to 'ホーム', root_path, class: "nav-item nav-link active text-light" %>
-        <%= link_to '会員登録', new_user_registration_path, class: "nav-item nav-link active text-light" %>
-        <%= link_to 'ログイン', new_user_session_path, class: "nav-item nav-link active text-light" %>
-      <% end %>
+<header>
+  <div class="navbar navbar-expand-lg navbar-light navbar-color">
+    <i class="fab fa-instagram fa-2x navbar-brand"></i>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-items" aria-controls="nav-items" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav-items">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to 'ホーム', root_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to '新規投稿', new_post_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'ユーザー一覧', users_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'DM', rooms_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'フォロー中', user_followings_path(current_user), class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'フォロワー', user_followers_path(current_user), class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link active" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to 'ホーム', root_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to '会員登録', new_user_registration_path, class: "nav-link active" %></li>
+          <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link active" %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
-</div>
+</header>
