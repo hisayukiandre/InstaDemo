@@ -16,7 +16,9 @@ class PostsController < ApplicationController
   end
 
   def index
-  	@posts = Post.all
+    # @posts = Post.all
+    # per(6)とここに書くかもしくはconfig.default_per_page = 9をinitializer/kaminari_configに書く
+  	@posts = Post.page(params[:page]).per(6).reverse_order
   end
 
   def show

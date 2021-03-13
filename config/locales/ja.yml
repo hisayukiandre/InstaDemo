@@ -1,0 +1,8 @@
+ja:
+  views:
+    pagination:
+      first: <i class="fas fa-backward"></i>
+      last: <i class="fas fa-forward"></i>
+      previous: <i class="fas fa-caret-left"></i>
+      next: <i class="fas fa-caret-right"></i>
+      truncate: "..."
