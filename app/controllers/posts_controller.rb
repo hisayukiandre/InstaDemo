@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   	if post.save
   		redirect_to root_path
   	else
+      @post = Post.new
   		render :new
   	end
   end
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
   def index
     # @posts = Post.all
     # per(6)とここに書くかもしくはconfig.default_per_page = 9をinitializer/kaminari_configに書く
-  	@posts = Post.page(params[:page]).per(6).reverse_order
+  	@posts = Post.includes(:user).page(params[:page]).per(6).reverse_order
   end
 
   def show
